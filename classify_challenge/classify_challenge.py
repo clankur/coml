@@ -36,7 +36,7 @@ def plot_acc_loss(history, lr, disp_acc=False, disp_loss=False):
     plt.ylabel('Accuracy')
     plt.xlabel('Epoch')
     plt.legend(['train_set', 'val_set'], loc='upper left')
-    plt.savefig('acc.png')
+    plt.savefig('graphs/acc.png')
     if (disp_acc):
        plt.show()
     plt.plot(history.history['loss'])
@@ -45,7 +45,7 @@ def plot_acc_loss(history, lr, disp_acc=False, disp_loss=False):
     plt.ylabel('Loss')
     plt.xlabel('Epoch')
     plt.legend(['train_set', 'val_set'], loc='upper left')
-    plt.savefig('loss%s.png' % (lr))
+    plt.savefig('graphs/loss%s.png' % (lr))
     if (disp_loss):
        plt.show()
 
@@ -60,7 +60,7 @@ infile = 'train.csv'
 testfile = 'test.csv'
 outfile = 'submission.csv'
 target_name = 'PAID_NEXT_MONTH'
-lr = 0.003
+lr = 0.005
 
 predictors, target = load_data(infile, target_name)
 model = create_model(predictors.shape[1], lr)
