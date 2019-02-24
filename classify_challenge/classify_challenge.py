@@ -19,7 +19,9 @@ def load_data(training_file, target_name):
 
 def create_model(n_cols):
     model = Sequential()
-    model.add(Dense(10, activation='relu', input_shape=(n_cols,), kernel_regularizer=regularizers.l2(0.05)))
+    model.add(Dense(50, activation='relu', input_shape=(n_cols,)))
+    model.add(Dense(200, activation='relu', input_shape=(n_cols,)))
+   
     model.add(Dense(2, activation='softmax'))
     optimizers.Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False)
     model.compile(optimizer='adam', loss='binary_crossentropy',
@@ -43,7 +45,7 @@ n_cols = predictors.shape[1]
 model = create_model(n_cols)
 
 class_weight = {0: 56, 1: 24}
-model.fit(predictors, target, epochs=100,
+model.fit(predictors, target, epochs=50,
           validation_split=0.3, class_weight=class_weight)
 
 test = pd.read_csv(testfile)
